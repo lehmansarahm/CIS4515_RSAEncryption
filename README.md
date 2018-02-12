@@ -7,9 +7,9 @@ more apps who want to interact with some shared data resource.  While the lab it
 simple, learning the process of setting up a Content Provider will help you greatly in the future.
 
 ## About My Solution
-__ NOTE: Please DO NOT consider my solution to be the ONLY solution.  There are as many right
+** NOTE: Please DO NOT consider my solution to be the ONLY solution.  There are as many right
 solutions as there are people to think of them.  This is just an example of how this problem MAY be
-solved. __
+solved. **
 
 I chose to place my content provider in a separate library module so that future applications that
 wanted to use the provider could access a common resource, rather than depending on an explicit

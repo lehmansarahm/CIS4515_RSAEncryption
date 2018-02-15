@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CIS4515_RSAEncryption.iml" filepath="$PROJECT_DIR$/CIS4515_RSAEncryption.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/encrlib/encrlib.iml" filepath="$PROJECT_DIR$/encrlib/encrlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/encrlib/pklibrary.iml" filepath="$PROJECT_DIR$/encrlib/pklibrary.iml" />
     </modules>
   </component>
 </project>

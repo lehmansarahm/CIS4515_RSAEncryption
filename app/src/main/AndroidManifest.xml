@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,6 +17,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".GenerateActivity" />
+        <activity android:name=".EncryptActivity" />
+        <activity android:name=".DecryptActivity" />
+
+        <provider
+            android:name="edu.temple.encrlib.publicprivatekeys.PPKProvider"
+            android:authorities="edu.temple.encrlib.publicprivatekeys.PPKProvider" />
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="edu.temple.encrlib.codedmessages.CMProvider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
     </application>
 
 </manifest>

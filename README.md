@@ -16,13 +16,27 @@ wanted to use the provider could access a common resource, rather than depending
 implementation in the RSAEncryption application.  In practice, however, because this lab is so simple,
 implementing the provider in the same app module as the encryption logic is just fine.
 
+I also chose to implement my public-private key storage as a SQL Lite database.  You could have
+chosen to store your keys in files, or to avoid storage altogether and generate new keys every time
+the application launches.  Utilizing a SQL Lite DB is a very common practice, and getting experience
+with this kind of data management can be very helpful for your learning process.
+
 ## Helpful Resources
 
 ### General Information
 * https://developer.android.com/reference/android/content/ContentProvider.html
 * https://developer.android.com/guide/topics/providers/content-provider-basics.html
+* https://www.grokkingandroid.com/android-tutorial-content-provider-basics/
+* https://developer.android.com/reference/java/security/KeyPairGenerator.html
+* https://developer.android.com/reference/java/security/SecureRandom.html
 
 ### Tutorials
 * https://www.tutorialspoint.com/android/android_content_providers.htm
+* https://www.grokkingandroid.com/android-tutorial-using-content-providers/
 * https://www.grokkingandroid.com/android-tutorial-writing-your-own-content-provider/
 * https://developer.android.com/guide/topics/providers/content-provider-creating.html
+* https://developer.android.com/training/secure-file-sharing/setup-sharing.html
+* https://www.programcreek.com/java-api-examples/java.security.KeyPairGenerator
+
+### CHALLENGE: Displaying Content Provider Data with ListViews
+* https://github.com/codepath/android_guides/wiki/Populating-a-ListView-with-a-CursorAdapter

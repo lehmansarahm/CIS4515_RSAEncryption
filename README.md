@@ -35,6 +35,7 @@ with this kind of data management can be very helpful for your learning process.
 * https://www.grokkingandroid.com/android-tutorial-using-content-providers/
 * https://www.grokkingandroid.com/android-tutorial-writing-your-own-content-provider/
 * https://developer.android.com/guide/topics/providers/content-provider-creating.html
+<<<<<<< HEAD
 * https://developer.android.com/training/secure-file-sharing/setup-sharing.html
 * https://www.programcreek.com/java-api-examples/java.security.KeyPairGenerator
 

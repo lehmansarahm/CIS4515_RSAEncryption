@@ -13,7 +13,7 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
     }
 
-    protected void init() {
+    protected void initializeBaseLayout() {
         final Button backButton = findViewById(R.id.backButton);
         final Intent intent = new Intent(this, MainActivity.class);
         backButton.setOnClickListener(new View.OnClickListener() {

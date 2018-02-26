@@ -1,6 +1,7 @@
 package edu.temple.encrlib.publicprivatekeys;
 
 import android.content.ContentResolver;
+import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
@@ -11,8 +12,8 @@ public final class PPKContract {
     public static final String AUTHORITY = (Constants.PACKAGE_NAME + ".publicprivatekeys.PPKProvider");
     public static final Uri CONTENT_URI = Uri.parse(Constants.CONTENT_PREFIX + AUTHORITY);
 
-    public static final ENCRYPTION_SCHEME DEFAULT_ENCRYPTION_SCHEME = ENCRYPTION_SCHEME.RSA;
-    public enum ENCRYPTION_SCHEME { RSA, SHA256 }
+    public static final int DEFAULT_ENCODING = Constants.DEFAULT_ENCODING;
+    public static final Constants.ENCRYPTION_SCHEME DEFAULT_ENCRYPTION_SCHEME = Constants.DEFAULT_ENCRYPTION_SCHEME;
 
     public static final class Keys implements BaseColumns {
 
@@ -32,6 +33,59 @@ public final class PPKContract {
 
         public static final String[] PROJECTION_ALL = { BaseColumns._ID, ALIAS, PUBLIC, PRIVATE };
 
+    }
+
+    public static PublicPrivateKey getPPK(Cursor cursor) {
+        int idIndex = cursor.getColumnIndex(Keys.ID);
+        int aliasIndex = cursor.getColumnIndex(Keys.ALIAS);
+        int publicIndex = cursor.getColumnIndex(Keys.PUBLIC);
+        int privateIndex = cursor.getColumnIndex(Keys.PRIVATE);
+
+        PublicPrivateKey ppk = new PublicPrivateKey();
+        ppk.setID(cursor.getInt(idIndex));
+        ppk.setAlias(cursor.getString(aliasIndex));
+        ppk.setPublicKey(cursor.getString(publicIndex));
+        ppk.setPrivateKey(cursor.getString(privateIndex));
+        return ppk;
+    }
+
+    public static class PublicPrivateKey {
+        private int ID;
+        private String alias;
+        private String publicKey;
+        private String privateKey;
+
+        public int getID() {
+            return ID;
+        }
+
+        public void setID(int ID) {
+            this.ID = ID;
+        }
+
+        public String getAlias() {
+            return alias;
+        }
+
+        public void setAlias(String alias) {
+            this.alias = alias;
+        }
+
+        public String getPublicKey() {
+            return publicKey;
+        }
+
+        public void setPublicKey(String publicKey) {
+            this.publicKey = publicKey;
+        }
+
+        public String getPrivateKey() {
+            return privateKey;
+        }
+
+        public void setPrivateKey(String privateKey) {
+            this.privateKey = privateKey;
+        }
     }
 
 }

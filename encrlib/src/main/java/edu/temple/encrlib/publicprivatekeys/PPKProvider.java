@@ -11,7 +11,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
-import android.util.Base64;
 import android.util.Log;
 
 import java.security.KeyPair;
@@ -185,10 +184,8 @@ public class PPKProvider extends ContentProvider {
         switch (PPKContract.DEFAULT_ENCRYPTION_SCHEME) {
             case RSA:
                 KeyPair newKeyPair = RsaEncryptor.generateKeyPair();
-                byte[] publicKeyBytes = Base64.encode(newKeyPair.getPublic().getEncoded(),0);
-                byte[] privateKeyBytes = Base64.encode(newKeyPair.getPrivate().getEncoded(),0);
-                publicKey = new String(publicKeyBytes);
-                privateKey = new String(privateKeyBytes);
+                publicKey = RsaEncryptor.encodeByteArray(newKeyPair.getPublic().getEncoded());
+                privateKey = RsaEncryptor.encodeByteArray(newKeyPair.getPrivate().getEncoded());
                 break;
             case SHA256:
                 // TODO - implement additional encryption methods

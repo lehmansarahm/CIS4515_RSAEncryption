@@ -26,14 +26,8 @@
             android:name="edu.temple.encrlib.publicprivatekeys.PPKProvider"
             android:authorities="edu.temple.encrlib.publicprivatekeys.PPKProvider" />
         <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="edu.temple.encrlib.codedmessages.CMProvider"
-            android:grantUriPermissions="true"
-            android:exported="false">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepaths" />
-        </provider>
+            android:name="edu.temple.encrlib.codedmessages.CMProvider"
+            android:authorities="edu.temple.encrlib.codedmessages.CMProvider" />
     </application>
 
 </manifest>

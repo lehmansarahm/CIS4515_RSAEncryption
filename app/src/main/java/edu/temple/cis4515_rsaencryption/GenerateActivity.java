@@ -24,15 +24,15 @@ public class GenerateActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate);
-        init();
+        initializeBaseLayout();
 
         final ContentResolver cr  = getContentResolver();
         refreshListView(cr);
 
+        final EditText alias = findViewById(R.id.alias);
         final Button generateButton = findViewById(R.id.generateButton);
         generateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                EditText alias = findViewById(R.id.alias);
                 if (alias.getText().toString().isEmpty()) {
                     Log.d(Constants.LOG_TAG, "Can't create new key-pair without an alias!");
                     Toast.makeText(GenerateActivity.this,

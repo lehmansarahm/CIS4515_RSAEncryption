@@ -1,38 +1,37 @@
 package edu.temple.encrlib.codedmessages;
 
+import android.content.ContentProvider;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.MatrixCursor;
 import android.net.Uri;
-import android.os.Environment;
-import android.support.v4.content.FileProvider;
 
-import java.io.File;
+public class CMProvider extends ContentProvider {
 
-import edu.temple.encrlib.utils.Constants;
-
-public class CMProvider extends FileProvider {
-
-    private static final String CONTENT_URL = Constants.PACKAGE_NAME + ".CMProvider";
-    private static final String ENCRYPTED_FILE_NAME = "encrypted.txt";
-    private static final String MESSAGES_DIR = "msgs";
-    public static Uri CONTENT_URI;
+    private static final String PREF_FILE_NAME = "CIS4515_Encryption_CMProvider_Prefs";
+    private static final String ENCODED_MESSAGE = "encoded_message";
 
     @Override
-    public boolean onCreate() {
-        File msgPath = new File(Environment.getExternalStorageDirectory(), MESSAGES_DIR);
-        File encrFile = new File(msgPath, ENCRYPTED_FILE_NAME);
-        CONTENT_URI = getUriForFile(getContext(),CONTENT_URL, encrFile);
-        return false;
-    }
+    public boolean onCreate() { return false; }
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        return null;
+        SharedPreferences sharedPrefs = getContext().getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putString(ENCODED_MESSAGE, values.getAsString(CMContract.Messages.INPUT_MESSAGE));
+        editor.commit();
+        return uri;
     }
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        return null;
+        SharedPreferences sharedPrefs = getContext().getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
+        MatrixCursor cursor = new MatrixCursor(new String[] { CMContract.Messages.OUTPUT_MESSAGE });
+        cursor.addRow(new String[] { sharedPrefs.getString(ENCODED_MESSAGE, "") });
+        getContext().getContentResolver().notifyChange(CMContract.Messages.CONTENT_URI, null);
+        return cursor;
     }
 
     @Override
